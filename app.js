@@ -3,11 +3,17 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
+mongoose.connect('mongodb+srv://adminElijah:' + process.env.MONGO_ATALS_PSW +'@node-rest-shop-alyff.mongodb.net/test?retryWrites=true&w=majority',{
+    // useMongoClient: true
+    useUnifiedTopology: true ,
+    useNewUrlParser: true 
+})
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
